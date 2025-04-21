@@ -4,7 +4,7 @@ A microservice for General Ledger (GL) accounting management within the Firefly 
 
 ## Overview
 
-The Common Platform Accounting GL microservice is designed to handle all general ledger accounting operations for the Catalis platform. It provides a reactive API built with Spring WebFlux and uses PostgreSQL with R2DBC for data storage and retrieval.
+The Common Platform Accounting GL microservice is designed to handle all general ledger accounting operations for the Firefly platform. It provides a reactive API built with Spring WebFlux and uses PostgreSQL with R2DBC for data storage and retrieval.
 
 ### Key Features
 
