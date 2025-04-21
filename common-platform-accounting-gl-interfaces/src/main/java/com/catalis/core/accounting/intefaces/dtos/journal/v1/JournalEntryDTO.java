@@ -1,6 +1,6 @@
 package com.catalis.core.accounting.intefaces.dtos.journal.v1;
 
-import com.catalis.common.core.filters.FilterableId;
+import com.catalis.core.utils.annotations.FilterableId;
 import lombok.*;
 
 import java.math.BigDecimal;

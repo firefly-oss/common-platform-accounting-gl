@@ -1,7 +1,7 @@
 package com.catalis.core.accounting.intefaces.dtos.journal.v1;
 
-import com.catalis.common.core.filters.FilterableId;
 import com.catalis.core.accounting.intefaces.enums.journal.v1.JournalLineDrCrEnum;
+import com.catalis.core.utils.annotations.FilterableId;
 import lombok.*;
 
 import java.math.BigDecimal;
