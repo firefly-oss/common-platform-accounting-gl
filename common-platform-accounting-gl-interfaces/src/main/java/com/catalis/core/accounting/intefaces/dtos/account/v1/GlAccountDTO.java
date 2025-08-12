@@ -1,5 +1,6 @@
 package com.catalis.core.accounting.intefaces.dtos.account.v1;
 
+import com.catalis.annotations.ValidCurrencyCode;
 import com.catalis.core.accounting.intefaces.enums.account.v1.GlAccountTypeEnum;
 import com.catalis.core.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,6 +26,8 @@ public class GlAccountDTO {
 
     private boolean isLeaf;
     private boolean active;
+
+    @ValidCurrencyCode
     private String currency;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
