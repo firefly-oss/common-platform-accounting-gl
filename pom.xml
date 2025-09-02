@@ -18,6 +18,7 @@
         <module>common-platform-accounting-gl-interfaces</module>
         <module>common-platform-accounting-gl-models</module>
         <module>common-platform-accounting-gl-core</module>
+        <module>common-platform-accounting-gl-sdk</module>
     </modules>
 
     <properties>
@@ -47,6 +48,11 @@
             <dependency>
                 <groupId>com.firefly</groupId>
                 <artifactId>common-platform-accounting-gl-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.firefly</groupId>
+                <artifactId>common-platform-accounting-gl-sdk</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
