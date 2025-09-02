@@ -4,6 +4,7 @@ import com.firefly.common.core.filters.FilterRequest;
 import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.accounting.intefaces.dtos.account.v1.GlAccountDTO;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 public interface GlAccountService {
     /**
@@ -20,7 +21,7 @@ public interface GlAccountService {
      * @param id the unique identifier of the general ledger account to be retrieved
      * @return a Mono emitting a GlAccountDTO representing the general ledger account, or empty if not found
      */
-    Mono<GlAccountDTO> getById(Long id);
+    Mono<GlAccountDTO> getById(UUID id);
 
     /**
      * Updates an existing General Ledger (GL) account identified by the provided ID with the given details.
@@ -29,7 +30,7 @@ public interface GlAccountService {
      * @param dto The data transfer object containing the updated details of the GL account.
      * @return A Mono containing the updated GL account data transfer object.
      */
-    Mono<GlAccountDTO> update(Long id, GlAccountDTO dto);
+    Mono<GlAccountDTO> update(UUID id, GlAccountDTO dto);
 
     /**
      * Deletes a GL account by its unique identifier.
@@ -37,7 +38,7 @@ public interface GlAccountService {
      * @param id the unique identifier of the GL account to be deleted
      * @return a reactive Mono signaling completion when the deletion operation has finished
      */
-    Mono<Void> delete(Long id);
+    Mono<Void> delete(UUID id);
 
     /**
      * Searches for GL accounts using the specified filter criteria.
@@ -54,7 +55,7 @@ public interface GlAccountService {
      * @param filterRequest the filter criteria to apply during the retrieval of child GL accounts
      * @return a reactive Mono containing a paginated response of GL account DTOs that represent the child accounts
      */
-    Mono<PaginationResponse<GlAccountDTO>> findChildren(Long parentId, FilterRequest<GlAccountDTO> filterRequest);
+    Mono<PaginationResponse<GlAccountDTO>> findChildren(UUID parentId, FilterRequest<GlAccountDTO> filterRequest);
 
     /**
      * Creates a child General Ledger (GL) account under a specified parent account.
@@ -63,5 +64,5 @@ public interface GlAccountService {
      * @param dto the data transfer object containing information about the child GL account to be created
      * @return a Mono emitting the created child GL account details wrapped in a GlAccountDTO
      */
-    Mono<GlAccountDTO> createChild(Long parentId, GlAccountDTO dto);
+    Mono<GlAccountDTO> createChild(UUID parentId, GlAccountDTO dto);
 }

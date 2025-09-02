@@ -12,6 +12,7 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/gl-accounts")
@@ -32,7 +33,7 @@ public class GlAccountController {
     @Operation(summary = "Get GL Account by ID")
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<GlAccountDTO>> getById(@PathVariable("id") Long id) {
+    public Mono<ResponseEntity<GlAccountDTO>> getById(@PathVariable("id") UUID id) {
         return glAccountService.getById(id)
                 .map(ResponseEntity::ok);
     }
@@ -40,7 +41,7 @@ public class GlAccountController {
     @Operation(summary = "Update GL Account")
     @ApiResponse(responseCode = "200", description = "GL Account updated")
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<GlAccountDTO>> update(@PathVariable("id") Long id,
+    public Mono<ResponseEntity<GlAccountDTO>> update(@PathVariable("id") UUID id,
                                      @RequestBody GlAccountDTO dto) {
         return glAccountService.update(id, dto)
                 .map(ResponseEntity::ok);
@@ -49,7 +50,7 @@ public class GlAccountController {
     @Operation(summary = "Delete GL Account")
     @ApiResponse(responseCode = "204", description = "GL Account deleted")
     @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Void>> delete(@PathVariable("id") Long id) {
+    public Mono<ResponseEntity<Void>> delete(@PathVariable("id") UUID id) {
         return glAccountService.delete(id)
                 .thenReturn(ResponseEntity.noContent().build());
     }
@@ -67,7 +68,7 @@ public class GlAccountController {
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping("/{parentId}/children")
     public Mono<ResponseEntity<PaginationResponse<GlAccountDTO>>> findChildren(
-            @PathVariable("parentId") Long parentId,
+            @PathVariable("parentId") UUID parentId,
             @ParameterObject @ModelAttribute FilterRequest<GlAccountDTO> filterRequest) {
         return glAccountService.findChildren(parentId, filterRequest)
                 .map(ResponseEntity::ok);
@@ -76,7 +77,7 @@ public class GlAccountController {
     @Operation(summary = "Create a child GL Account under a parent")
     @ApiResponse(responseCode = "201", description = "Child GL Account created")
     @PostMapping("/{parentId}/children")
-    public Mono<ResponseEntity<GlAccountDTO>> createChild(@PathVariable("parentId") Long parentId,
+    public Mono<ResponseEntity<GlAccountDTO>> createChild(@PathVariable("parentId") UUID parentId,
                                           @RequestBody GlAccountDTO dto) {
         return glAccountService.createChild(parentId, dto)
                 .map(ResponseEntity::ok);

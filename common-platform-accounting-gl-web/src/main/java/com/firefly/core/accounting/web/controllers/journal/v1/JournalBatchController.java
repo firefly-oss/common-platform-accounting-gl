@@ -12,6 +12,7 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/journal-batches")
@@ -32,7 +33,7 @@ public class JournalBatchController {
     @Operation(summary = "Get a Journal Batch by ID")
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<JournalBatchDTO>> getById(@PathVariable("id") Long id) {
+    public Mono<ResponseEntity<JournalBatchDTO>> getById(@PathVariable("id") UUID id) {
         return journalBatchService.getById(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -41,7 +42,7 @@ public class JournalBatchController {
     @Operation(summary = "Update an existing Journal Batch")
     @ApiResponse(responseCode = "200", description = "Batch updated")
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<JournalBatchDTO>> update(@PathVariable("id") Long id,
+    public Mono<ResponseEntity<JournalBatchDTO>> update(@PathVariable("id") UUID id,
                                                         @RequestBody JournalBatchDTO dto) {
         return journalBatchService.update(id, dto)
                 .map(ResponseEntity::ok);
@@ -50,7 +51,7 @@ public class JournalBatchController {
     @Operation(summary = "Delete a Journal Batch")
     @ApiResponse(responseCode = "204", description = "Batch deleted")
     @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Void>> delete(@PathVariable("id") Long id) {
+    public Mono<ResponseEntity<Void>> delete(@PathVariable("id") UUID id) {
         return journalBatchService.delete(id)
                 .thenReturn(ResponseEntity.noContent().build());
     }

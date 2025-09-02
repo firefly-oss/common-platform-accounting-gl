@@ -7,6 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -15,10 +16,10 @@ import java.time.LocalDateTime;
 @Table("journal_line")
 public class JournalLine {
     @Id
-    private Long id;
+    private UUID id;
 
-    private Long entryId;
-    private Long accountId;
+    private UUID entryId;
+    private UUID accountId;
     private BigDecimal amount;
     private JournalLineDrCrEnum drCr;
     private String memo;

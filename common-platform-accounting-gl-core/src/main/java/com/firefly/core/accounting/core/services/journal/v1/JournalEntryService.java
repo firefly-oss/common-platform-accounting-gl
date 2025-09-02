@@ -4,6 +4,7 @@ import com.firefly.common.core.filters.FilterRequest;
 import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.accounting.intefaces.dtos.journal.v1.JournalEntryDTO;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 public interface JournalEntryService {
     /**
@@ -13,7 +14,7 @@ public interface JournalEntryService {
      * @param dto the data transfer object containing the details of the journal entry to be created
      * @return a Mono emitting the created journal entry details wrapped in a JournalEntryDTO
      */
-    Mono<JournalEntryDTO> create(Long batchId, JournalEntryDTO dto);
+    Mono<JournalEntryDTO> create(UUID batchId, JournalEntryDTO dto);
     /**
      * Retrieves a journal entry identified by the specified batch ID and entry ID.
      *
@@ -22,7 +23,7 @@ public interface JournalEntryService {
      * @return a Mono emitting the JournalEntryDTO representing the journal entry,
      *         or an empty Mono if no entry is found
      */
-    Mono<JournalEntryDTO> getById(Long batchId, Long entryId);
+    Mono<JournalEntryDTO> getById(UUID batchId, UUID entryId);
     /**
      * Updates an existing journal entry identified by the given batch ID and entry ID with the provided details.
      *
@@ -31,7 +32,7 @@ public interface JournalEntryService {
      * @param dto the data transfer object containing the updated details of the journal entry
      * @return a Mono that emits the updated JournalEntryDTO upon successful update
      */
-    Mono<JournalEntryDTO> update(Long batchId, Long entryId, JournalEntryDTO dto);
+    Mono<JournalEntryDTO> update(UUID batchId, UUID entryId, JournalEntryDTO dto);
     /**
      * Deletes a specific journal entry identified by its batch ID and entry ID.
      *
@@ -39,7 +40,7 @@ public interface JournalEntryService {
      * @param entryId the identifier of the journal entry to be deleted
      * @return a reactive Mono signaling completion when the deletion operation has finished
      */
-    Mono<Void> delete(Long batchId, Long entryId);
+    Mono<Void> delete(UUID batchId, UUID entryId);
     /**
      * Searches for journal entries within a specific batch using the provided filter criteria.
      *
@@ -47,5 +48,5 @@ public interface JournalEntryService {
      * @param filterRequest the filtering criteria and parameters for searching journal entries
      * @return a Mono emitting a paginated response containing the list of matching journal entry DTOs
      */
-    Mono<PaginationResponse<JournalEntryDTO>> search(Long batchId, FilterRequest<JournalEntryDTO> filterRequest);
+    Mono<PaginationResponse<JournalEntryDTO>> search(UUID batchId, FilterRequest<JournalEntryDTO> filterRequest);
 }

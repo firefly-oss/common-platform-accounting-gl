@@ -5,16 +5,17 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class JournalEntryDTO {
-    private Long id;
+    private UUID id;
 
     @FilterableId
-    private Long batchId;
+    private UUID batchId;
 
     @FilterableId
     private String transactionId;

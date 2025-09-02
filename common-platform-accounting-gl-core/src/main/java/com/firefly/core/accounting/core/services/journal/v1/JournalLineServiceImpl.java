@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -23,7 +24,7 @@ public class JournalLineServiceImpl implements JournalLineService {
     private JournalLineMapper mapper;
 
     @Override
-    public Mono<JournalLineDTO> create(Long batchId, Long entryId, JournalLineDTO dto) {
+    public Mono<JournalLineDTO> create(UUID batchId, UUID entryId, JournalLineDTO dto) {
         return Mono.just(dto)
                 .map(inputDto -> {
                     inputDto.setEntryId(entryId);
@@ -34,7 +35,7 @@ public class JournalLineServiceImpl implements JournalLineService {
     }
 
     @Override
-    public Mono<JournalLineDTO> getById(Long batchId, Long entryId, Long lineId) {
+    public Mono<JournalLineDTO> getById(UUID batchId, UUID entryId, UUID lineId) {
         return repository.findById(lineId)
                 .filter(entity -> entity.getEntryId().equals(entryId))
                 .map(mapper::toDTO)
@@ -42,7 +43,7 @@ public class JournalLineServiceImpl implements JournalLineService {
     }
 
     @Override
-    public Mono<JournalLineDTO> update(Long batchId, Long entryId, Long lineId, JournalLineDTO dto) {
+    public Mono<JournalLineDTO> update(UUID batchId, UUID entryId, UUID lineId, JournalLineDTO dto) {
         return repository.findById(lineId)
                 .filter(entity -> entity.getEntryId().equals(entryId))
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No journal line found with ID: " + lineId)))
@@ -60,7 +61,7 @@ public class JournalLineServiceImpl implements JournalLineService {
     }
 
     @Override
-    public Mono<Void> delete(Long batchId, Long entryId, Long lineId) {
+    public Mono<Void> delete(UUID batchId, UUID entryId, UUID lineId) {
         return repository.findById(lineId)
                 .filter(entity -> entity.getEntryId().equals(entryId))
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No journal line found with ID: " + lineId)))
@@ -68,7 +69,7 @@ public class JournalLineServiceImpl implements JournalLineService {
     }
 
     @Override
-    public Mono<PaginationResponse<JournalLineDTO>> search(Long batchId, Long entryId, FilterRequest<JournalLineDTO> filterRequest) {
+    public Mono<PaginationResponse<JournalLineDTO>> search(UUID batchId, UUID entryId, FilterRequest<JournalLineDTO> filterRequest) {
         filterRequest.getFilters().setEntryId(entryId);
         return FilterUtils.createFilter(
                 JournalLine.class,

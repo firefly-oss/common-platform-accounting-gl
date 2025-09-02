@@ -7,6 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @Table("journal_batch")
 public class JournalBatch {
     @Id
-    private Long id;
+    private UUID id;
 
     private String reference;
     private JournalBatchStatusEnum status;

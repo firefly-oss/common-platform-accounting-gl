@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -14,12 +15,12 @@ import java.time.LocalDateTime;
 @Table("gl_account")
 public class GlAccount {
     @Id
-    private Long id;
+    private UUID id;
 
     private String code;
     private String name;
     private GlAccountTypeEnum type;
-    private Long parentId;
+    private UUID parentId;
     private boolean isLeaf;
     private boolean active;
     private String currency;

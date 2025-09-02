@@ -12,6 +12,7 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/journal-batches/{batchId}/entries")
@@ -24,7 +25,7 @@ public class JournalEntryController {
     @Operation(summary = "Create a new Journal Entry in a specific Batch")
     @ApiResponse(responseCode = "201", description = "Journal Entry created")
     @PostMapping
-    public Mono<ResponseEntity<JournalEntryDTO>> create(@PathVariable("batchId") Long batchId,
+    public Mono<ResponseEntity<JournalEntryDTO>> create(@PathVariable("batchId") UUID batchId,
                                                         @RequestBody JournalEntryDTO dto) {
         return journalEntryService.create(batchId, dto)
                 .map(entry -> ResponseEntity.status(201).body(entry));
@@ -33,8 +34,8 @@ public class JournalEntryController {
     @Operation(summary = "Get a Journal Entry by ID within a Batch")
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping("/{entryId}")
-    public Mono<ResponseEntity<JournalEntryDTO>> getById(@PathVariable("batchId") Long batchId,
-                                                         @PathVariable("entryId") Long entryId) {
+    public Mono<ResponseEntity<JournalEntryDTO>> getById(@PathVariable("batchId") UUID batchId,
+                                                         @PathVariable("entryId") UUID entryId) {
         return journalEntryService.getById(batchId, entryId)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -43,8 +44,8 @@ public class JournalEntryController {
     @Operation(summary = "Update a Journal Entry within a Batch")
     @ApiResponse(responseCode = "200", description = "Entry updated")
     @PutMapping("/{entryId}")
-    public Mono<ResponseEntity<JournalEntryDTO>> update(@PathVariable("batchId") Long batchId,
-                                                        @PathVariable("entryId") Long entryId,
+    public Mono<ResponseEntity<JournalEntryDTO>> update(@PathVariable("batchId") UUID batchId,
+                                                        @PathVariable("entryId") UUID entryId,
                                                         @RequestBody JournalEntryDTO dto) {
         return journalEntryService.update(batchId, entryId, dto)
                 .map(ResponseEntity::ok);
@@ -53,8 +54,8 @@ public class JournalEntryController {
     @Operation(summary = "Delete a Journal Entry within a Batch")
     @ApiResponse(responseCode = "204", description = "Entry deleted")
     @DeleteMapping("/{entryId}")
-    public Mono<ResponseEntity<Void>> delete(@PathVariable("batchId") Long batchId,
-                                             @PathVariable("entryId") Long entryId) {
+    public Mono<ResponseEntity<Void>> delete(@PathVariable("batchId") UUID batchId,
+                                             @PathVariable("entryId") UUID entryId) {
         return journalEntryService.delete(batchId, entryId)
                 .then(Mono.just(ResponseEntity.noContent().build()));
     }
@@ -63,7 +64,7 @@ public class JournalEntryController {
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping("/")
     public Mono<ResponseEntity<PaginationResponse<JournalEntryDTO>>> search(
-            @PathVariable("batchId") Long batchId,
+            @PathVariable("batchId") UUID batchId,
             @ParameterObject @ModelAttribute FilterRequest<JournalEntryDTO> filterRequest) {
         return journalEntryService.search(batchId, filterRequest)
                 .map(ResponseEntity::ok);

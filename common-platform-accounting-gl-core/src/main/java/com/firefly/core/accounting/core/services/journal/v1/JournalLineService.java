@@ -4,6 +4,7 @@ import com.firefly.common.core.filters.FilterRequest;
 import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.accounting.intefaces.dtos.journal.v1.JournalLineDTO;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 public interface JournalLineService {
 
@@ -15,7 +16,7 @@ public interface JournalLineService {
      * @param dto the data transfer object containing the details of the journal line to be created
      * @return a Mono emitting the created journal line details wrapped in a JournalLineDTO
      */
-    Mono<JournalLineDTO> create(Long batchId, Long entryId, JournalLineDTO dto);
+    Mono<JournalLineDTO> create(UUID batchId, UUID entryId, JournalLineDTO dto);
 
     /**
      * Retrieves a journal line identified by the specified batch ID, entry ID, and line ID.
@@ -26,7 +27,7 @@ public interface JournalLineService {
      * @return a Mono emitting the JournalLineDTO representing the journal line,
      *         or an empty Mono if no line is found
      */
-    Mono<JournalLineDTO> getById(Long batchId, Long entryId, Long lineId);
+    Mono<JournalLineDTO> getById(UUID batchId, UUID entryId, UUID lineId);
 
     /**
      * Updates an existing journal line identified by the given batch ID, entry ID, and line ID
@@ -38,7 +39,7 @@ public interface JournalLineService {
      * @param dto the data transfer object containing the updated details for the journal line
      * @return a {@code Mono<JournalLineDTO>} that emits the updated journal line details upon successful update
      */
-    Mono<JournalLineDTO> update(Long batchId, Long entryId, Long lineId, JournalLineDTO dto);
+    Mono<JournalLineDTO> update(UUID batchId, UUID entryId, UUID lineId, JournalLineDTO dto);
 
     /**
      * Deletes a specific journal line identified by its batch ID, entry ID, and line ID.
@@ -48,7 +49,7 @@ public interface JournalLineService {
      * @param lineId the identifier of the journal line to be deleted
      * @return a reactive Mono signaling completion when the deletion operation has finished
      */
-    Mono<Void> delete(Long batchId, Long entryId, Long lineId);
+    Mono<Void> delete(UUID batchId, UUID entryId, UUID lineId);
 
     /**
      * Searches for journal lines within a specific batch and entry using the provided filter criteria.
@@ -58,5 +59,5 @@ public interface JournalLineService {
      * @param filterRequest the filtering criteria and parameters for searching journal lines
      * @return a Mono emitting a paginated response containing the list of matching journal line DTOs
      */
-    Mono<PaginationResponse<JournalLineDTO>> search(Long batchId, Long entryId, FilterRequest<JournalLineDTO> filterRequest);
+    Mono<PaginationResponse<JournalLineDTO>> search(UUID batchId, UUID entryId, FilterRequest<JournalLineDTO> filterRequest);
 }

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -33,14 +34,14 @@ public class JournalBatchServiceImpl implements JournalBatchService {
     }
 
     @Override
-    public Mono<JournalBatchDTO> getById(Long id) {
+    public Mono<JournalBatchDTO> getById(UUID id) {
         return repository.findById(id)
                 .map(mapper::toDTO)
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No journal batch found with ID: " + id)));
     }
 
     @Override
-    public Mono<JournalBatchDTO> update(Long id, JournalBatchDTO dto) {
+    public Mono<JournalBatchDTO> update(UUID id, JournalBatchDTO dto) {
         return repository.findById(id)
                 .flatMap(existingEntity -> {
                     existingEntity.setReference(dto.getReference());
@@ -55,7 +56,7 @@ public class JournalBatchServiceImpl implements JournalBatchService {
     }
 
     @Override
-    public Mono<Void> delete(Long id) {
+    public Mono<Void> delete(UUID id) {
         return repository.findById(id)
                 .flatMap(existingEntity -> repository.delete(existingEntity))
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No journal batch found with ID: " + id)))

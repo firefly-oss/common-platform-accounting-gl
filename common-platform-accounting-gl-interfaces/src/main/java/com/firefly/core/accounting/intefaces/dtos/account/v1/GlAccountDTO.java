@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -15,14 +16,14 @@ import java.time.LocalDateTime;
 public class GlAccountDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long id;
+    private UUID id;
 
     private String code;
     private String name;
     private GlAccountTypeEnum type;
 
     @FilterableId
-    private Long parentId;
+    private UUID parentId;
 
     private boolean isLeaf;
     private boolean active;

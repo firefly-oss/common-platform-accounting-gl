@@ -6,6 +6,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -14,9 +15,9 @@ import java.time.LocalDateTime;
 @Table("journal_entry")
 public class JournalEntry {
     @Id
-    private Long id;
+    private UUID id;
 
-    private Long batchId;
+    private UUID batchId;
     private String transactionId;
     private String sourceModule;
     private BigDecimal totalAmount;

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -31,14 +32,14 @@ public class GlAccountServiceImpl implements GlAccountService {
     }
 
     @Override
-    public Mono<GlAccountDTO> getById(Long id) {
+    public Mono<GlAccountDTO> getById(UUID id) {
         return repository.findById(id)
                 .map(mapper::toDTO)
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No account found with ID: " + id)));
     }
 
     @Override
-    public Mono<GlAccountDTO> update(Long id, GlAccountDTO dto) {
+    public Mono<GlAccountDTO> update(UUID id, GlAccountDTO dto) {
         return repository.findById(id)
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No account found with ID: " + id)))
                 .flatMap(existingAccount -> {
@@ -50,7 +51,7 @@ public class GlAccountServiceImpl implements GlAccountService {
     }
 
     @Override
-    public Mono<Void> delete(Long id) {
+    public Mono<Void> delete(UUID id) {
         return repository.findById(id)
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No account found with ID: " + id)))
                 .flatMap(existingAccount -> repository.delete(existingAccount));
@@ -67,7 +68,7 @@ public class GlAccountServiceImpl implements GlAccountService {
     }
 
     @Override
-    public Mono<PaginationResponse<GlAccountDTO>> findChildren(Long parentId, FilterRequest<GlAccountDTO> filterRequest) {
+    public Mono<PaginationResponse<GlAccountDTO>> findChildren(UUID parentId, FilterRequest<GlAccountDTO> filterRequest) {
         filterRequest.getFilters().setParentId(parentId);
         return FilterUtils.createFilter(
                 GlAccount.class,
@@ -76,7 +77,7 @@ public class GlAccountServiceImpl implements GlAccountService {
     }
 
     @Override
-    public Mono<GlAccountDTO> createChild(Long parentId, GlAccountDTO dto) {
+    public Mono<GlAccountDTO> createChild(UUID parentId, GlAccountDTO dto) {
         dto.setParentId(parentId);
         return create(dto);
     }

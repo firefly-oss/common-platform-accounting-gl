@@ -4,6 +4,7 @@ import com.firefly.common.core.filters.FilterRequest;
 import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.accounting.intefaces.dtos.journal.v1.JournalBatchDTO;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 public interface JournalBatchService {
     /**
@@ -19,7 +20,7 @@ public interface JournalBatchService {
      * @param id the unique identifier of the journal batch to be retrieved
      * @return a Mono emitting a JournalBatchDTO representing the journal batch, or empty if not found
      */
-    Mono<JournalBatchDTO> getById(Long id);
+    Mono<JournalBatchDTO> getById(UUID id);
     /**
      * Updates an existing Journal Batch identified by the provided ID with the given details.
      *
@@ -27,14 +28,14 @@ public interface JournalBatchService {
      * @param dto the data transfer object containing the updated details of the Journal Batch
      * @return a Mono containing the updated Journal Batch data transfer object
      */
-    Mono<JournalBatchDTO> update(Long id, JournalBatchDTO dto);
+    Mono<JournalBatchDTO> update(UUID id, JournalBatchDTO dto);
     /**
      * Deletes a journal batch by its unique identifier.
      *
      * @param id the unique identifier of the journal batch to be deleted
      * @return a reactive Mono signaling completion when the deletion operation has finished
      */
-    Mono<Void> delete(Long id);
+    Mono<Void> delete(UUID id);
     /**
      * Searches for journal batches using the specified filtering criteria.
      *

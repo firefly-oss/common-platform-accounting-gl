@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -23,14 +24,14 @@ public class JournalEntryServiceImpl implements JournalEntryService {
     private JournalEntryMapper mapper;
 
     @Override
-    public Mono<JournalEntryDTO> create(Long batchId, JournalEntryDTO dto) {
+    public Mono<JournalEntryDTO> create(UUID batchId, JournalEntryDTO dto) {
         dto.setBatchId(batchId);
         return repository.save(mapper.toEntity(dto))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<JournalEntryDTO> getById(Long batchId, Long entryId) {
+    public Mono<JournalEntryDTO> getById(UUID batchId, UUID entryId) {
         return repository.findById(entryId)
                 .filter(entity -> entity.getBatchId().equals(batchId))
                 .map(mapper::toDTO)
@@ -38,7 +39,7 @@ public class JournalEntryServiceImpl implements JournalEntryService {
     }
 
     @Override
-    public Mono<JournalEntryDTO> update(Long batchId, Long entryId, JournalEntryDTO dto) {
+    public Mono<JournalEntryDTO> update(UUID batchId, UUID entryId, JournalEntryDTO dto) {
         return repository.findById(entryId)
                 .filter(entity -> entity.getBatchId().equals(batchId))
                 .flatMap(existingEntity -> {
@@ -52,7 +53,7 @@ public class JournalEntryServiceImpl implements JournalEntryService {
     }
 
     @Override
-    public Mono<Void> delete(Long batchId, Long entryId) {
+    public Mono<Void> delete(UUID batchId, UUID entryId) {
         return repository.findById(entryId)
                 .filter(entity -> entity.getBatchId().equals(batchId))
                 .switchIfEmpty(Mono.error(new IllegalArgumentException("No journal entry found with ID: " + entryId)))
@@ -60,7 +61,7 @@ public class JournalEntryServiceImpl implements JournalEntryService {
     }
 
     @Override
-    public Mono<PaginationResponse<JournalEntryDTO>> search(Long batchId, FilterRequest<JournalEntryDTO> filterRequest) {
+    public Mono<PaginationResponse<JournalEntryDTO>> search(UUID batchId, FilterRequest<JournalEntryDTO> filterRequest) {
         return FilterUtils.createFilter(
                 JournalEntry.class,
                 mapper::toDTO

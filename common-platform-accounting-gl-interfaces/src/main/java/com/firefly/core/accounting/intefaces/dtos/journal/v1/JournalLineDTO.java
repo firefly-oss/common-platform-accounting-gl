@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -13,13 +14,13 @@ import java.time.LocalDateTime;
 @Builder
 public class JournalLineDTO {
 
-    private Long id;
+    private UUID id;
 
     @FilterableId
-    private Long entryId;
+    private UUID entryId;
 
     @FilterableId
-    private Long accountId;
+    private UUID accountId;
 
     private BigDecimal amount;
     private JournalLineDrCrEnum drCr;
