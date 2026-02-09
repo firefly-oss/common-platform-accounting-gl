@@ -18,7 +18,7 @@
 package com.firefly.core.accounting.intefaces.dtos.journal.v1;
 
 import com.firefly.core.accounting.intefaces.enums.journal.v1.JournalLineDrCrEnum;
-import com.firefly.core.utils.annotations.FilterableId;
+import org.fireflyframework.utils.annotations.FilterableId;
 import lombok.*;
 
 import java.math.BigDecimal;

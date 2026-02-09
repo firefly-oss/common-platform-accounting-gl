@@ -17,8 +17,8 @@
 
 package com.firefly.core.accounting.web.controllers.journal.v1;
 
-import com.firefly.common.core.filters.FilterRequest;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.filters.FilterRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.accounting.core.services.journal.v1.JournalBatchService;
 import com.firefly.core.accounting.intefaces.dtos.journal.v1.JournalBatchDTO;
 import io.swagger.v3.oas.annotations.Operation;

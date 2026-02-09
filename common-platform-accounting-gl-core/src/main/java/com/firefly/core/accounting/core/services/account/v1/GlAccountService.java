@@ -17,8 +17,8 @@
 
 package com.firefly.core.accounting.core.services.account.v1;
 
-import com.firefly.common.core.filters.FilterRequest;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.filters.FilterRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.accounting.intefaces.dtos.account.v1.GlAccountDTO;
 import reactor.core.publisher.Mono;
 import java.util.UUID;

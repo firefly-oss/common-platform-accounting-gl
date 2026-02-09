@@ -17,9 +17,9 @@
 
 package com.firefly.core.accounting.intefaces.dtos.account.v1;
 
-import com.firefly.annotations.ValidCurrencyCode;
+import org.fireflyframework.annotations.ValidCurrencyCode;
 import com.firefly.core.accounting.intefaces.enums.account.v1.GlAccountTypeEnum;
-import com.firefly.core.utils.annotations.FilterableId;
+import org.fireflyframework.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
