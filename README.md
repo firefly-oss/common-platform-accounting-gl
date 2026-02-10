@@ -29,7 +29,7 @@ This project follows a modular architecture with clear separation of concerns:
 
 ### Technology Stack
 
-- **Java 21**: Utilizing the latest Java features including virtual threads
+- **Java 25**: Utilizing the latest Java features including virtual threads
 - **Spring Boot**: Framework for building microservices
 - **Spring WebFlux**: Reactive web framework
 - **R2DBC**: Reactive Relational Database Connectivity for PostgreSQL
@@ -42,7 +42,7 @@ This project follows a modular architecture with clear separation of concerns:
 
 ### Prerequisites
 
-- Java 21 or higher
+- Java 25 or higher
 - Maven 3.8 or higher
 - PostgreSQL 14 or higher
 - Docker (optional, for containerized deployment)
