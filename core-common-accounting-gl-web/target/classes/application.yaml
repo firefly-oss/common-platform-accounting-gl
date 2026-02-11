@@ -1,6 +1,6 @@
 spring:
   application:
-    name: common-platform-accounting-gl
+    name: core-common-accounting-gl
     version: 1.0.0
     description: General Ledger Accounting Management
     team:

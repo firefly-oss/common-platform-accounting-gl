@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.firefly</groupId>
-        <artifactId>common-platform-accounting-gl</artifactId>
+        <artifactId>core-common-accounting-gl</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>common-platform-accounting-gl-sdk</artifactId>
+    <artifactId>core-common-accounting-gl-sdk</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,7 +27,7 @@
         <!-- Web module for OpenAPI spec -->
         <dependency>
             <groupId>com.firefly</groupId>
-            <artifactId>common-platform-accounting-gl-web</artifactId>
+            <artifactId>core-common-accounting-gl-web</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -99,7 +99,7 @@
                 <version>${openapi-generator.version}</version>
                 <executions>
                     <execution>
-                        <id>common-platform-accounting-gl-sdk</id>
+                        <id>core-common-accounting-gl-sdk</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>

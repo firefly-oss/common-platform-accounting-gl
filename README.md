@@ -22,10 +22,10 @@ This project follows a modular architecture with clear separation of concerns:
 
 ### Modules
 
-- **common-platform-accounting-gl-interfaces**: Contains DTOs and interfaces that define the API contract
-- **common-platform-accounting-gl-models**: Contains database entities and repositories
-- **common-platform-accounting-gl-core**: Contains business logic and services
-- **common-platform-accounting-gl-web**: Contains REST controllers and web configuration
+- **core-common-accounting-gl-interfaces**: Contains DTOs and interfaces that define the API contract
+- **core-common-accounting-gl-models**: Contains database entities and repositories
+- **core-common-accounting-gl-core**: Contains business logic and services
+- **core-common-accounting-gl-web**: Contains REST controllers and web configuration
 
 ### Technology Stack
 
@@ -69,7 +69,7 @@ mvn clean install
 ### Running the Application
 
 ```bash
-mvn spring-boot:run -pl common-platform-accounting-gl-web
+mvn spring-boot:run -pl core-common-accounting-gl-web
 ```
 
 ### Running with Docker
@@ -79,14 +79,14 @@ First, build the application JAR file:
 ```bash
 mvn clean package -DskipTests
 # Copy the JAR to the root directory for Docker to find it
-cp common-platform-accounting-gl-web/target/common-platform-accounting-gl-web-1.0.0-SNAPSHOT.jar common-platform-accounting-gl.jar
+cp core-common-accounting-gl-web/target/core-common-accounting-gl-web-1.0.0-SNAPSHOT.jar core-common-accounting-gl.jar
 ```
 
 Then build and run the Docker container:
 
 ```bash
 # Build the Docker image
-docker build -t common-platform-accounting-gl .
+docker build -t core-common-accounting-gl .
 
 # Run the container
 docker run -p 8080:8080 \
@@ -96,7 +96,7 @@ docker run -p 8080:8080 \
   -e DB_USERNAME=postgres \
   -e DB_PASSWORD=postgres \
   -e DB_SSL_MODE=disable \
-  common-platform-accounting-gl
+  core-common-accounting-gl
 ```
 
 ### Main API Endpoints
@@ -135,7 +135,7 @@ mvn test jacoco:report
 ### Database Migrations
 
 Database schema changes should be made through Flyway migrations. Add new migration scripts in:
-`common-platform-accounting-gl-models/src/main/resources/db/migration`
+`core-common-accounting-gl-models/src/main/resources/db/migration`
 
 ### Branching Strategy
 

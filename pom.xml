@@ -11,14 +11,14 @@
     </parent>
 
     <groupId>com.firefly</groupId>
-    <artifactId>common-platform-accounting-gl</artifactId>
+    <artifactId>core-common-accounting-gl</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>common-platform-accounting-gl-web</module>
-        <module>common-platform-accounting-gl-interfaces</module>
-        <module>common-platform-accounting-gl-models</module>
-        <module>common-platform-accounting-gl-core</module>
-        <module>common-platform-accounting-gl-sdk</module>
+        <module>core-common-accounting-gl-web</module>
+        <module>core-common-accounting-gl-interfaces</module>
+        <module>core-common-accounting-gl-models</module>
+        <module>core-common-accounting-gl-core</module>
+        <module>core-common-accounting-gl-sdk</module>
     </modules>
 
     <properties>
@@ -27,9 +27,9 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <fireflyframework.bom.version>26.01.01</fireflyframework.bom.version>
-        <common-platform-accounting-gl.version>
+        <core-common-accounting-gl.version>
             1.0.0-SNAPSHOT
-        </common-platform-accounting-gl.version>
+        </core-common-accounting-gl.version>
     </properties>
 
     <dependencyManagement>
@@ -44,27 +44,27 @@
             <!-- Internal modules -->
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>common-platform-accounting-gl-interfaces</artifactId>
+                <artifactId>core-common-accounting-gl-interfaces</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>common-platform-accounting-gl-models</artifactId>
+                <artifactId>core-common-accounting-gl-models</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>common-platform-accounting-gl-core</artifactId>
+                <artifactId>core-common-accounting-gl-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>common-platform-accounting-gl-web</artifactId>
+                <artifactId>core-common-accounting-gl-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.firefly</groupId>
-                <artifactId>common-platform-accounting-gl-sdk</artifactId>
+                <artifactId>core-common-accounting-gl-sdk</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
